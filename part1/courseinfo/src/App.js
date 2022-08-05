@@ -21,12 +21,11 @@ const App = () => {
     return <h1> {props.course.name} </h1>;
   };
 
-  const Content = (props) => {
-  
-    const Part = (props) => {
-      return <p> {props.parts.name} {props.parts.exercises} </p>;
-    }
+  const Part = (props) => {
+    return <p> {props.parts.name} {props.parts.exercises} </p>;
+  }
 
+  const Content = (props) => {
     return (
       <>
         <Part parts={props.course.parts[0]}/>
