@@ -2,10 +2,13 @@
 
 #### anecdotes
 - [x] 1.12*
-- [ ] 1.13*
+- [x] 1.13*
 - [ ] 1.14*
 
 ### Development Notes
 
 #### 1.12
-Feeling much more comfortable with event handleing, didn't have to think on this one much.
+Feeling much more comfortable with event handling, didn't have to think on this one much.
+
+#### 1.13
+Really enjoyed the challenge of this one, I want to be more familiar with the array spread syntax ([...copy]) and knowing when to use a copy vs ref when dealing with arrays.
