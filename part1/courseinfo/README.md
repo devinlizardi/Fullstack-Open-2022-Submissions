@@ -1,4 +1,4 @@
-### Courseinfo parts here
+### Courseinfo Exercises
 
 I tried to match each commit to questions, we'll see how well it goes
 

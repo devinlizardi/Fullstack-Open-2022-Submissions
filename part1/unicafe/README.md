@@ -1,4 +1,4 @@
-### Unicafe parts here
+### Unicafe Exercises
 
 #### unicafe
 - [x] 1.6
