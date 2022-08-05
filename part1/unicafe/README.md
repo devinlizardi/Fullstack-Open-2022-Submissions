@@ -12,3 +12,5 @@
 
 #### 1.6
 Felt good about formatting, not sure if I want to pass text as a prop vs as a child. Since we haven't gotten to that in the course though I'll use what we've covered only so far.
+
+#### 1.7
