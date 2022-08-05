@@ -13,4 +13,5 @@
 #### 1.6
 Felt good about formatting, not sure if I want to pass text as a prop vs as a child. Since we haven't gotten to that in the course though I'll use what we've covered only so far.
 
-#### 1.7
+#### 1.11
+Didn't have much experience formatting HTML tables, thought this was a good exercise. Would round the ints to make it formatted better but wanted to keep moving.
