@@ -1,10 +1,11 @@
 ### Anecdotes Exercises
 
 #### anecdotes
-- [ ] 1.12*
+- [x] 1.12*
 - [ ] 1.13*
 - [ ] 1.14*
 
 ### Development Notes
 
-#### 1.n
+#### 1.12
+Feeling much more comfortable with event handleing, didn't have to think on this one much.
