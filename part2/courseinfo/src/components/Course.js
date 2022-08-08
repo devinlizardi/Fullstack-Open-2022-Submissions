@@ -2,9 +2,8 @@ import React from "react";
 
 const Header = ({ name }) => <h1>{name}</h1>;
 const Total = ({ parts }) => {
-  let sum = 0;
-  parts.forEach((part) => (sum += part.exercises));
-  return <b>total of {sum} exercises</b>;
+  const total = parts.reduce((s, p) => { return s + p.exercises }, 0);
+  return <b>total of {total} exercises</b>;
 };
 
 const Content = ({ parts }) => {
@@ -16,7 +15,6 @@ const Content = ({ parts }) => {
 };
 
 const Course = ({ course }) => {
-  console.log(course);
   return (
     <>
       <Header name={course.name} />
