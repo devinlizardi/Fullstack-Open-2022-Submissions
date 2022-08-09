@@ -1,54 +1,68 @@
-import { useState } from "react";
+import { useState } from "react"
+import PersonForm from "./components/PersonForm"
+import NumberDisplay from "./components/NumberDisplay"
+
+const Filter = ({ newFilter, handleFilterChange }) => {
+  return (
+    <div>
+      filter shown with <input value={newFilter} onChange={handleFilterChange}/>
+    </div>
+  )
+}
 
 const App = () => {
-  const [persons, setPersons] = useState([{ name: "Arto Hellas", number: "(264) 652-1729" }]);
-  const [newName, setNewName] = useState("");
-  const [newNumber, setNewNumber] = useState("");
+  const [persons, setPersons] = useState([
+    { name: 'Arto Hellas', number: '040-123456', id: 1 },
+    { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
+    { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
+    { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
+  ])
+  const [newName, setNewName] = useState("")
+  const [newNumber, setNewNumber] = useState("")
+  const [newFilter, setNewFilter] = useState("")
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    const newPerson = { name: newName, number: newNumber };
-    const isRepeat = persons.filter((p) => p.name === newName).length > 0;
+    event.preventDefault()
+    const newPerson = { name: newName, number: newNumber }
+    const isRepeat = persons.filter((p) => p.name === newName).length > 0
 
     if (!isRepeat) {
-      setPersons(persons.concat(newPerson));
-      setNewName("");
-      setNewNumber("");
+      setPersons(persons.concat(newPerson))
+      setNewName("")
+      setNewNumber("")
     } else {
-      alert(`${newName} already in phonebook`);
+      alert(`${newName} already in phonebook`)
     }
-  };
+  }
 
   const handleNameChange = (event) => {
-    setNewName(event.target.value);
-  };
+    setNewName(event.target.value)
+  }
 
   const handleNumberChange = (e) => {
-    setNewNumber(e.target.value);
-  };
+    setNewNumber(e.target.value)
+  }
+
+  const handleFilterChange = (e) => {
+    setNewFilter(e.target.value)
+  }
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          name: <input value={newName} onChange={handleNameChange} /> <br />
-          number: <input value={newNumber} onChange={handleNumberChange} />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <Filter newFilter={newFilter} handleFilterChange={handleFilterChange} />
+      <h2>add a new</h2>
+      <PersonForm
+        newName={newName}
+        newNumber={newNumber}
+        handleSubmit={handleSubmit}
+        handleNameChange={handleNameChange}
+        handleNumberChange={handleNumberChange}
+      />
       <h2>Numbers</h2>
-      <ul>
-        {persons.map((person) => (
-          <li key={person.name}>
-            {person.name} {person.number}
-          </li>
-        ))}
-      </ul>
+      <NumberDisplay persons={persons} newFilter={newFilter} />
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
