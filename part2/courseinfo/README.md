@@ -1,4 +1,4 @@
-### Part 2Courseinfo Exercises
+### Part 2 Courseinfo Exercises
 
 #### courseinfo
 - [x] 2.1
