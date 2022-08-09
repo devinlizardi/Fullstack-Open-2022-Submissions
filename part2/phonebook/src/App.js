@@ -8,8 +8,15 @@ const App = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    setPersons(persons.concat({ name: newName }))
-    setNewName("")
+    const newPerson = { name: newName }
+    const isRepeat = persons.filter(p => p.name === newName).length > 0
+
+    if (!isRepeat) {
+      setPersons(persons.concat(newPerson))
+      setNewName("")
+    } else {
+      alert(`${newName} already in phonebook`)
+    }
   }
 
   const handleNameChange = (event) => {
