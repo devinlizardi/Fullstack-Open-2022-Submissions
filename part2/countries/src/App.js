@@ -6,7 +6,7 @@ const CountryDisplay = ({ country }) => {
   const name = country.name.common
   const capital = country.capital[0]
   const languages = Object.values(country.languages)
-  const flag = country.flags.png;
+  const flag = country.flags.png
 
   return (
     <div>
@@ -14,14 +14,16 @@ const CountryDisplay = ({ country }) => {
       <p>capital {capital}</p> <br />
       <b>languages: </b>
       <ul>
-        {languages.map((lang) => (<li key={lang}> {lang} </li>))}
+        {languages.map((lang) => (
+          <li key={lang}> {lang} </li>
+        ))}
       </ul>
-      <img src={flag} alt={"flag"}/>
+      <img src={flag} alt={"flag"} />
     </div>
   )
 }
 
-const DisplayCountries = ({ countries, filter }) => {
+const DisplayCountries = ({ countries, filter, manualFilter }) => {
   const namesFiltered = countries.filter((country) => {
     let c = country.name.common.toLowerCase()
     return c.includes(filter.toLowerCase())
@@ -31,15 +33,20 @@ const DisplayCountries = ({ countries, filter }) => {
     return <p>Too many matches, specify another filter</p>
   }
 
-  if (namesFiltered.length > 1) {
-    return namesFiltered.map(({ name }) => <p key={name.official}>{name.common}</p>)
-  }
-
   if (namesFiltered.length === 1) {
     return <CountryDisplay country={namesFiltered[0]} />
   }
 
-  return <></>
+  const doFilter = () => {
+    const result = namesFiltered.map(({ name }) => (
+      <li key={name.official}>
+        {name.common} <button onClick={() => manualFilter(name.common)}>show</button> <br />
+      </li>
+    ))
+    return result
+  }
+
+  return <ul style={{ listStyleType: "none" }}>{doFilter()}</ul>
 }
 
 function App() {
@@ -52,10 +59,20 @@ function App() {
     })
   }, [])
 
+  const manualFilter = (name) => {
+    setFilter(name)
+  } 
+
   return (
     <div>
-      find countries <input value={filter} onChange={(event) => setFilter(event.target.value)} />
-      <DisplayCountries countries={countries} filter={filter} />
+      find countries{" "}
+      <input
+        value={filter}
+        onChange={(event) => {
+          setFilter(event.target.value)
+        }}
+      />
+      <DisplayCountries countries={countries} filter={filter} manualFilter={manualFilter} />
     </div>
   )
 }
