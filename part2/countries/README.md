@@ -13,3 +13,5 @@ This challenge was especially useful on my ability to parse simple object data f
 I started this question with a bit of a misunderstanding, I thought that each "show" button would render the country display alongside the names of each country matching the given search term. This proved to be a much more involved task, where I created a state object in a child-component and realized I'd have to refactor significantly in order to maintain this approach. I then reread the question and realized by manually updating the filter to match the name it would take the user to that country's view.
 
 It would be a good challenge to refactor and deconstruct the Array#map process so I can properly maintain state, but I feel it'd be a better use of my time to move on with the questions and find this practice elsewhere.
+
+This functionality doesn't entirely work though, the cases like "Sudan" and "United States" aren't solved.
