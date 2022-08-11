@@ -13,6 +13,9 @@
 - [x] 2.17
 - [x] 2.18*
 
+- [x] 2.19
+- [ ] 2.20*
+
 ### Development Notes
 #### 2.9*
 Setting up the state objects wasn't too hard a challenge, but passing the filter state to the necessary component and using it to filter the array was tricky. There might be a better way to use the filter input, I was a little concerned that String#filter only creates a shallow copy, but it seems to work just fine (for now).

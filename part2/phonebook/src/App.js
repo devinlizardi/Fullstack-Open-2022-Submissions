@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import PersonForm from "./components/PersonForm"
 import NumberDisplay from "./components/NumberDisplay"
 import personService from "./services/persons"
+import Notification from "./components/Notification"
 
 const Filter = ({ newFilter, handleFilterChange }) => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
   const [newName, setNewName] = useState("")
   const [newNumber, setNewNumber] = useState("")
   const [newFilter, setNewFilter] = useState("")
+  const [notifMessage, setNotifMessage] = useState(null)
 
   useEffect(() => {
     personService.getAll().then((initialPeople) => {
@@ -33,6 +35,7 @@ const App = () => {
         .create(newPerson)
         .then((res) => {
           setPersons(persons.concat({...newPerson, id: res.id}))
+          setNotifMessage(`Added ${newPerson.name} to phonebook. Look at you, you have friends :)`)
       })
     } else {
       const oldPerson = persons.find(p => p.name === newName)
@@ -43,8 +46,10 @@ const App = () => {
             .filter(p => p.name !== newName)
             .concat({...newPerson, id: res.id})
           setPersons(updated)
+          setNotifMessage(`Updated ${newPerson.name} phone number to ${newPerson.number}`)
         })
     }
+    setTimeout(() => setNotifMessage(null), 5000)
     setNewName("")
     setNewNumber("")
   }
@@ -64,6 +69,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={notifMessage} />
       <Filter newFilter={newFilter} handleFilterChange={handleFilterChange} />
       <h2>add a new</h2>
       <PersonForm
