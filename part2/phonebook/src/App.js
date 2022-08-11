@@ -26,19 +26,27 @@ const App = () => {
   const handleSubmit = (event) => {
     event.preventDefault()
     const newPerson = { name: newName, number: newNumber }
-    const isRepeat = persons.filter((p) => p.name === newName).length > 0
+    const isRepeat = persons.filter(p => p.name === newName).length > 0
 
     if (!isRepeat) {
       personService
         .create(newPerson)
         .then((res) => {
           setPersons(persons.concat({...newPerson, id: res.id}))
-          setNewName("")
-          setNewNumber("")
       })
     } else {
-      alert(`${newName} already in phonebook`)
+      const oldPerson = persons.find(p => p.name === newName)
+      personService
+        .update(oldPerson.id, newPerson)
+        .then(res => {
+          const updated = persons
+            .filter(p => p.name !== newName)
+            .concat({...newPerson, id: res.id})
+          setPersons(updated)
+        })
     }
+    setNewName("")
+    setNewNumber("")
   }
 
   const handleNameChange = (event) => {

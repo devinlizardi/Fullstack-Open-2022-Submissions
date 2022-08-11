@@ -16,5 +16,10 @@ const remove = id => {
   return req.then(res => res.data)
 }
 
+const update = (id, newObject) => {
+  const req = axios.put(`${baseUrl}/${id}`, newObject)
+  return req.then(res => res.data)
+}
+
 // eslint-disable-next-line import/no-anonymous-default-export
-export default {getAll, create, remove}
+export default {getAll, create, remove, update}

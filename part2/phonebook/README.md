@@ -11,7 +11,7 @@
 - [x] 2.15
 - [x] 2.16
 - [x] 2.17
-- [ ] 2.18*
+- [x] 2.18*
 
 ### Development Notes
 #### 2.9*
@@ -25,3 +25,6 @@ There's something extremely satisfying watching a json file update on my harddri
 
 #### 2.17
 Felt great about this one, I knew where to add the button because my component structure was already robust enough, all I needed was to pass some props around. The one issue that tripped me up was when the user added a new person and then tried to immediately delete them, the server was returning a 404. Realized that the person objects stored in my state array didn't save the person's id from the server, so it was a quick fix and good to go.
+
+#### 2.18*
+Had to be especially clear about the oldPerson vs newPerson objects when updating the phone number on this challenge. I'm sure my code could be cleaner because I found myself filtering and finding the same things frequently, but it works well and makes sense to me.
