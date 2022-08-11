@@ -18,9 +18,12 @@ const App = () => {
   const [newNumber, setNewNumber] = useState("")
   const [newFilter, setNewFilter] = useState("")
   const [notifMessage, setNotifMessage] = useState(null)
+  const [isError, setIsError] = useState(false)
 
   useEffect(() => {
-    personService.getAll().then((initialPeople) => {
+    personService
+      .getAll()
+      .then((initialPeople) => {
       setPersons(initialPeople)
     })
   }, [])
@@ -35,6 +38,7 @@ const App = () => {
         .create(newPerson)
         .then((res) => {
           setPersons(persons.concat({...newPerson, id: res.id}))
+          setIsError(false)
           setNotifMessage(`Added ${newPerson.name} to phonebook. Look at you, you have friends :)`)
       })
     } else {
@@ -46,7 +50,17 @@ const App = () => {
             .filter(p => p.name !== newName)
             .concat({...newPerson, id: res.id})
           setPersons(updated)
+          setIsError(false)
           setNotifMessage(`Updated ${newPerson.name} phone number to ${newPerson.number}`)
+        })
+        .catch(err => {
+          setIsError(true)
+          setNotifMessage(`${newPerson.name} was already deleted`)
+          personService
+            .getAll()
+            .then((initialPeople) => {
+              setPersons(initialPeople)
+            })
         })
     }
     setTimeout(() => setNotifMessage(null), 5000)
@@ -69,7 +83,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification message={notifMessage} />
+      <Notification message={notifMessage} isError={isError} />
       <Filter newFilter={newFilter} handleFilterChange={handleFilterChange} />
       <h2>add a new</h2>
       <PersonForm

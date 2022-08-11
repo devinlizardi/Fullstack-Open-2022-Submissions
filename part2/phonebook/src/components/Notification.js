@@ -1,8 +1,8 @@
 import React from "react";
 
-const Notification = ({ message }) => {
+const Notification = ({ message, isError }) => {
   const notifStyle = {
-    color: 'green',
+    color: isError ? 'red': 'green',
     fontSize: 16,
     fontStyle: 'italic',
     fontFamily: 'sans-serif'
