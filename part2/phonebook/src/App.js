@@ -32,7 +32,7 @@ const App = () => {
       personService
         .create(newPerson)
         .then((res) => {
-          setPersons(persons.concat(newPerson))
+          setPersons(persons.concat({...newPerson, id: res.id}))
           setNewName("")
           setNewNumber("")
       })
@@ -66,7 +66,7 @@ const App = () => {
         handleNumberChange={handleNumberChange}
       />
       <h2>Numbers</h2>
-      <NumberDisplay persons={persons} newFilter={newFilter} />
+      <NumberDisplay persons={persons} newFilter={newFilter} setPersons={setPersons} />
     </div>
   )
 }

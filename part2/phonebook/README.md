@@ -10,7 +10,7 @@
 
 - [x] 2.15
 - [x] 2.16
-- [ ] 2.17
+- [x] 2.17
 - [ ] 2.18*
 
 ### Development Notes
@@ -22,3 +22,6 @@ Really enjoyed setting up a JSON-server even though it's super simple. I ran int
 
 #### 2.15
 There's something extremely satisfying watching a json file update on my harddrive while only communicating with it through my browser.
+
+#### 2.17
+Felt great about this one, I knew where to add the button because my component structure was already robust enough, all I needed was to pass some props around. The one issue that tripped me up was when the user added a new person and then tried to immediately delete them, the server was returning a 404. Realized that the person objects stored in my state array didn't save the person's id from the server, so it was a quick fix and good to go.
