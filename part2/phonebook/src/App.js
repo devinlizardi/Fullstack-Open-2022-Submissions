@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react"
 import PersonForm from "./components/PersonForm"
 import NumberDisplay from "./components/NumberDisplay"
-import axios from 'axios'
+import personService from "./services/persons"
 
 const Filter = ({ newFilter, handleFilterChange }) => {
   return (
     <div>
-      filter shown with <input value={newFilter} onChange={handleFilterChange}/>
+      filter shown with <input value={newFilter} onChange={handleFilterChange} />
     </div>
   )
 }
@@ -18,11 +18,9 @@ const App = () => {
   const [newFilter, setNewFilter] = useState("")
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3001/persons')
-      .then(res => {
-        setPersons(res.data)
-      })
+    personService.getAll().then((initialPeople) => {
+      setPersons(initialPeople)
+    })
   }, [])
 
   const handleSubmit = (event) => {
@@ -31,9 +29,13 @@ const App = () => {
     const isRepeat = persons.filter((p) => p.name === newName).length > 0
 
     if (!isRepeat) {
-      setPersons(persons.concat(newPerson))
-      setNewName("")
-      setNewNumber("")
+      personService
+        .create(newPerson)
+        .then((res) => {
+          setPersons(persons.concat(newPerson))
+          setNewName("")
+          setNewNumber("")
+      })
     } else {
       alert(`${newName} already in phonebook`)
     }
