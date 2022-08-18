@@ -3,6 +3,7 @@ const express = require("express")
 const PORT = 3001
 
 const app = express()
+app.use(express.json)
 let persons = [
   {
     id: 1,
@@ -52,11 +53,22 @@ app.get("/api/persons/:id", (req, res) => {
   res.json(person)
 })
 
-app.delete('/api/persons/:id', (req, res) => {
+app.delete("/api/persons/:id", (req, res) => {
   const id = Number(req.params.id)
   persons = persons.filter(p => p.id !== id)
 
   console.log(persons)
+
+  res.status(204).end()
+})
+
+app.post("api/persons/:id", (req, res) => {
+  console.log("posty")
+  
+  const id = Number(req.params.id)
+
+  console.log(req.body)
+  console.log(id)
 
   res.status(204).end()
 })
