@@ -29,7 +29,7 @@ let persons = [
 
 app.get("/", (req, res) => {
   console.log("attempting connection")
-  res.send("we ddidid")
+  res.send("<h1>hello world</>")
 })
 
 app.get("/info", (req, res) => {
