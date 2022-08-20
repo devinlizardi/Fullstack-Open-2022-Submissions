@@ -66,9 +66,7 @@ app.post("api/persons/:id", (req, res) => {
   console.log("posty")
   
   const id = Number(req.params.id)
-
-  console.log(req.body)
-  console.log(id)
+  console.log(req.params.id === id ? "true" : "false");
 
   res.status(204).end()
 })
