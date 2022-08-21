@@ -2,7 +2,7 @@
 const express = require("express")
 
 const app = express()
-app.use(express.json)
+app.use(express.json())
 
 let persons = [
   {
@@ -26,13 +26,16 @@ let persons = [
     number: "39-23-6423122",
   },
 ]
+const getRandomInt = (max) => {
+  return Math.floor(Math.random() * max)
+}
 
 app.get("/info", (req, res) => {
-  console.log("hello")
   res.send(
-  `<p>Phonebook has info for ${persons.length} people</p>
+    `<p>Phonebook has info for ${persons.length} people</p>
     ${new Date()}
-  `)
+  `
+  )
 })
 
 app.get("/api/persons", (req, res) => {
@@ -41,7 +44,7 @@ app.get("/api/persons", (req, res) => {
 
 app.get("/api/persons/:id", (req, res) => {
   const id = Number(req.params.id)
-  const person = persons.find(p => p.id === id)
+  const person = persons.find((p) => p.id === id)
   if (!person) {
     res.status(404).end()
     return
@@ -49,31 +52,24 @@ app.get("/api/persons/:id", (req, res) => {
   res.json(person)
 })
 
-// app.delete("/api/persons/:id", (req, res) => {
-//   const id = Number(req.params.id)
-//   persons = persons.filter(p => p.id !== id)
+app.delete("/api/persons/:id", (req, res) => {
+  const id = Number(req.params.id)
+  persons = persons.filter((p) => p.id !== id)
 
-//   console.log(persons)
+  console.log(persons)
 
-//   res.status(204).end()
-// })
-
-// app.post("api/persons/:id", (req, res) => {
-//   console.log("posty")
-  
-//   const id = Number(req.params.id)
-//   console.log(req.params.id === id ? "true" : "false");
-
-//   res.status(204).end()
-// })
-
-app.get('*', (err, req, res, next) => {
-  console.log('no way')
-  res.send("done")
+  res.status(204).end()
 })
 
-const PORT = 3002
+app.post("/api/persons/", (req, res) => {
+  const newPerson = { id: getRandomInt(99), name: req.body.name, number: req.body.number }
+  persons = persons.concat(newPerson)
+
+  console.log("Persons: ", persons);
+  res.send(newPerson).status(204).end()
+})
+
+const PORT = 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
-  // console.log(persons)
 })
