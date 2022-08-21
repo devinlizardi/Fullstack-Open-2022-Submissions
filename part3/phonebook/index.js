@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 const express = require("express")
-const PORT = 3001
 
 const app = express()
 app.use(express.json)
+
 let persons = [
   {
     id: 1,
@@ -27,12 +27,8 @@ let persons = [
   },
 ]
 
-app.get("/", (req, res) => {
-  console.log("attempting connection")
-  res.send("<h1>hello world</>")
-})
-
 app.get("/info", (req, res) => {
+  console.log("hello")
   res.send(
   `<p>Phonebook has info for ${persons.length} people</p>
     ${new Date()}
@@ -53,24 +49,31 @@ app.get("/api/persons/:id", (req, res) => {
   res.json(person)
 })
 
-app.delete("/api/persons/:id", (req, res) => {
-  const id = Number(req.params.id)
-  persons = persons.filter(p => p.id !== id)
+// app.delete("/api/persons/:id", (req, res) => {
+//   const id = Number(req.params.id)
+//   persons = persons.filter(p => p.id !== id)
 
-  console.log(persons)
+//   console.log(persons)
 
-  res.status(204).end()
-})
+//   res.status(204).end()
+// })
 
-app.post("api/persons/:id", (req, res) => {
-  console.log("posty")
+// app.post("api/persons/:id", (req, res) => {
+//   console.log("posty")
   
-  const id = Number(req.params.id)
-  console.log(req.params.id === id ? "true" : "false");
+//   const id = Number(req.params.id)
+//   console.log(req.params.id === id ? "true" : "false");
 
-  res.status(204).end()
+//   res.status(204).end()
+// })
+
+app.get('*', (err, req, res, next) => {
+  console.log('no way')
+  res.send("done")
 })
 
+const PORT = 3002
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
+  // console.log(persons)
 })
