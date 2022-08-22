@@ -1,8 +1,34 @@
 /* eslint-disable no-unused-vars */
 const express = require("express")
+const morgan = require("morgan")
+
+morgan.token("persons", (req, res) => {
+  return JSON.stringify(persons)
+})
 
 const app = express()
+
 app.use(express.json())
+app.use(
+  morgan((tokens, req, res) => {
+    return tokens.method(req, res) === "POST"
+      ? [
+          tokens.method(req, res),
+          tokens.url(req, res),
+          tokens.status(req, res),
+          tokens.res(req, res, "content-length"), "-",
+          tokens["response-time"](req, res), "ms",
+          tokens.persons(req, res),
+        ].join(" ")
+      : [
+          tokens.method(req, res),
+          tokens.url(req, res),
+          tokens.status(req, res),
+          tokens.res(req, res, "content-length"), "-",
+          tokens["response-time"](req, res), "ms",
+        ].join(" ")
+  })
+)
 
 let persons = [
   {
@@ -26,6 +52,7 @@ let persons = [
     number: "39-23-6423122",
   },
 ]
+
 const getRandomInt = (max) => {
   return Math.floor(Math.random() * max)
 }
