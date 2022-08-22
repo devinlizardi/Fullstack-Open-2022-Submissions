@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 const express = require("express")
 const morgan = require("morgan")
+const cors = require("cors")
 
 morgan.token("persons", (req, res) => {
   return JSON.stringify(persons)
@@ -29,6 +30,7 @@ app.use(
         ].join(" ")
   })
 )
+app.use(cors())
 
 let persons = [
   {
