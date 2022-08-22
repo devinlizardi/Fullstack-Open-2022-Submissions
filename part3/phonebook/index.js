@@ -55,32 +55,29 @@ app.get("/api/persons/:id", (req, res) => {
 app.delete("/api/persons/:id", (req, res) => {
   const id = Number(req.params.id)
   persons = persons.filter((p) => p.id !== id)
-
-  console.log("Deleted: ", persons)
-
   res.status(204).end()
 })
 
 app.post("/api/persons/", (req, res) => {
   if (!req.body.name || !req.body.number) {
     return res.status(400).json({
-      error: 'content missing'
+      error: "content missing",
     })
   }
 
   const newName = req.body.name
-  persons.forEach(p => {
-    console.log(p)
-    if (p.name === newName) {
-      return res.status(400).json({
-        error: 'name must be unique'
-      })
-    }
+  const currNames = persons.map((p) => {
+    return p.name
   })
+
+  if (currNames.includes(newName)) {
+    return res.status(400).json({
+      error: "name must be unique",
+    })
+  }
 
   const newPerson = { id: getRandomInt(99), name: newName, number: req.body.number }
   persons = persons.concat(newPerson)
-
   res.send(newPerson).status(204).end()
 })
 
