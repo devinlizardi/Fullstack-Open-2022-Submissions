@@ -9,9 +9,6 @@ Fullstack-Open-2022-Submissions.code-workspace
 # testing
 /coverage
 
-# production
-/build
-
 # misc
 .DS_Store
 .env.local
