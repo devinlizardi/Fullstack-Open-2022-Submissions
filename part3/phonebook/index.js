@@ -31,6 +31,7 @@ app.use(
   })
 )
 app.use(cors())
+app.use(express.static('build'))
 
 let persons = [
   {
@@ -108,10 +109,6 @@ app.post("/api/persons/", (req, res) => {
   const newPerson = { id: getRandomInt(99), name: newName, number: req.body.number }
   persons = persons.concat(newPerson)
   res.send(newPerson).status(204).end()
-})
-
-app.get('*', (req, res) => {
-  res.send("PLEASE PLEASE PLEASE")
 })
 
 const PORT = process.env.PORT || 3001
