@@ -110,7 +110,12 @@ app.post("/api/persons/", (req, res) => {
   res.send(newPerson).status(204).end()
 })
 
+app.get('*', (req, res) => {
+  res.send("PLEASE PLEASE PLEASE")
+})
+
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
+  console.log("is this running at all?")
 })
