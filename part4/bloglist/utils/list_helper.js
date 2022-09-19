@@ -1,6 +1,15 @@
-const dummy = (blogs) => {
-  console.log(blogs);
+const dummy = () => {
   return 1
 }
 
-module.exports = { dummy }
+const totalLikes = (blogs) => {
+  let total = 0
+
+  blogs.forEach(el => {
+    total += el.likes
+  })
+
+  return total
+}
+
+module.exports = { dummy, totalLikes }
