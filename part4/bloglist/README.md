@@ -8,7 +8,7 @@ Establishing work for each exercise
 - [x] Refactor backend to async/await
 - [ ] Refactor backend tests to async/await
 - [x] 4.8: Test GET request, verify `n` blog posts
-- [ ] 4.9*: Test _id_, use Jest's `toBeDefined` and restructure backend to pass
+- [x] 4.9*: Test _id_, use Jest's `toBeDefined` and restructure backend to pass
 - [ ] 4.10: Test POST request, `n + 1` blog posts, content of new post is saved to db
 - [ ] 4.11*: Test if _likes_ is missing default is 0
 - [ ] 4.12*: Test new blogs verifies _title_ and _url_ properties are present, if missing response should be _400 Bad Request_

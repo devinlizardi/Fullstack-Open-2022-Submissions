@@ -24,6 +24,13 @@ test("there are 6 blogs at refresh", async () => {
   expect(res.body).toHaveLength(6)
 })
 
+test("the _id param is read as id", async () => {
+  const res = await api.get("/api/blogs")
+  console.log(res.body)
+  expect(res.body[0].id).toBeDefined()
+  expect(res.body[0]._id).not.toBeDefined()
+})
+
 afterAll(() => {
   mongoose.connection.close()
 })
