@@ -66,7 +66,12 @@ test("request with no likes defaults to 0", async () => {
     .expect("Content-Type", /application\/json/)
   
   const response = await api.get("/api/blogs")
-  // expect(response.body)
+  for (let blog of response.body) {
+    if (blog.title === "Nobody likes me") {
+      expect(blog.likes).toBe(0)
+      break
+    }
+  }
 })
 
 afterAll(() => {
