@@ -21,7 +21,7 @@ test("blogs are returned as json", async () => {
 
 test("there are 6 blogs at refresh", async () => {
   const res = await api.get("/api/blogs")
-  expect(res.body).toHaveLength(6)
+  expect(res.body).toHaveLength(exampleBlogs.length)
 })
 
 test("the _id param is read as id", async () => {
@@ -83,6 +83,37 @@ test("blog without title and url is rejected", async () => {
     .post("/api/blogs")
     .send(emptyBlog)
     .expect(400)
+})
+
+test("blog is added and deleted by id", async () => {
+  const blogToDelete = {
+    title: "End Me",
+    author: "Kora",
+    url: "https://localhost:4000",
+    likes: 80
+  }
+
+  await api
+    .post("/api/blogs")
+    .send(blogToDelete)
+    .expect(201)
+
+  const res = await api.get("/api/blogs")
+  expect(res.body).toHaveLength(exampleBlogs.length + 1)
+
+  let toDeleteId
+  for (let blog of res.body) {
+    if (blog.title === "End Me") {
+      toDeleteId = blog.id
+    }
+  }
+
+  await api
+    .delete(`/api/blogs/${toDeleteId}`)
+    .expect(204)
+
+  const newRes = await api.get("/api/blogs")
+  expect(newRes.body).toHaveLength(exampleBlogs.length)
 })
 
 afterAll(() => {
