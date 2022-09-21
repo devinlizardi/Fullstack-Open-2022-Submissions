@@ -10,8 +10,6 @@ Adding MongoDB was surprisingly easy, the only issue I ran into was MongoDB not 
 
 I skipped the phone number validation questions, I've touched regex before for form validation and know how much of a mess that is, so it's something I'm marking down as "may need help here" but moving on from part 3.
 
-tabs > spaces
-
 Had a proud moment when I realized I had setup ESLint far before this point, makes me feel like completing this section was earned.
 
 All questions in part 3 complete except 3.19 and 3.20
