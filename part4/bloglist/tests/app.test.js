@@ -26,7 +26,6 @@ test("there are 6 blogs at refresh", async () => {
 
 test("the _id param is read as id", async () => {
   const res = await api.get("/api/blogs")
-  console.log(res.body)
   expect(res.body[0].id).toBeDefined()
   expect(res.body[0]._id).not.toBeDefined()
 })
@@ -52,7 +51,7 @@ test("adding a new blog is handled", async () => {
   expect(contents).toContain("Testing blog")
 })
 
-test("request with no likes defaults to 0", async () => {
+test("blog with no likes defaults to 0", async () => {
   const newBlog = {
     title: "Nobody likes me",
     author: "me",
@@ -72,6 +71,18 @@ test("request with no likes defaults to 0", async () => {
       break
     }
   }
+})
+
+test("blog without title and url is rejected", async () => {
+  const emptyBlog = {
+    author: "",
+    likes: 0
+  }
+
+  await api
+    .post("/api/blogs")
+    .send(emptyBlog)
+    .expect(400)
 })
 
 afterAll(() => {
