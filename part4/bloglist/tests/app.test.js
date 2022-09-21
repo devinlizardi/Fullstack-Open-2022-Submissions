@@ -114,6 +114,10 @@ test("blog is added and deleted by id", async () => {
 
   const newRes = await api.get("/api/blogs")
   expect(newRes.body).toHaveLength(exampleBlogs.length)
+
+  await api
+    .delete(`/api/blogs/${toDeleteId}`)
+    .expect(400)
 })
 
 afterAll(() => {
