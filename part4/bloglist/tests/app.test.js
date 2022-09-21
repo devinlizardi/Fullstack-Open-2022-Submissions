@@ -52,6 +52,23 @@ test("adding a new blog is handled", async () => {
   expect(contents).toContain("Testing blog")
 })
 
+test("request with no likes defaults to 0", async () => {
+  const newBlog = {
+    title: "Nobody likes me",
+    author: "me",
+    url: "http://localhost:0000"
+  }
+
+  await api
+    .post("/api/blogs")
+    .send(newBlog)
+    .expect(201)
+    .expect("Content-Type", /application\/json/)
+  
+  const response = await api.get("/api/blogs")
+  // expect(response.body)
+})
+
 afterAll(() => {
   mongoose.connection.close()
 })
