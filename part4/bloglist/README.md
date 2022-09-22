@@ -1,6 +1,8 @@
 # Blog List Development Process
 Completed all exercises up to 4.5
 
+*Note:* Skipped 4.6 & 4.7, all exercises otherwise are complete.
+
 I want to learn Lodash because it seems extremely useful for iterating over arrays and objects, something that can be so confusing and slow in Javascript. Going to go back to these questions once I've completed the rest of this part, just want to focus on the testing material at the moment.
 
 ## Part 4.b
@@ -16,3 +18,6 @@ Establishing work for each exercise
 Update and delete features
 - [x] 4.13: Deleting a blog / testing deletion
 - [x] 4.14: Update information of a blog / testing updating likes
+
+## Part 4.d
+Establishing work for final exercises in this part
