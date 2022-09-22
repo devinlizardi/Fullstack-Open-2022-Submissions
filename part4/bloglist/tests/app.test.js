@@ -120,6 +120,33 @@ test("blog is added and deleted by id", async () => {
     .expect(400)
 })
 
+test("blog item is added and likes are updated", async () => {
+  const needsLove = {
+    title: "Come and get your love",
+    author: "Redbone",
+    url: "youtube it",
+    likes: 0
+  }
+
+  await api
+    .post("/api/blogs")
+    .send(needsLove)
+    .expect(201)
+
+  const res = await api.get("/api/blogs")
+  let toUpdateId
+  for (let blog of res.body) {
+    if (blog.title === "Come and get your love") {
+      toUpdateId = blog.id
+    }
+  }
+
+  await api
+    .put(`/api/blogs/${toUpdateId}`)
+    .send({ likes:100 })
+    .expect(200)
+})
+
 afterAll(() => {
   mongoose.connection.close()
 })

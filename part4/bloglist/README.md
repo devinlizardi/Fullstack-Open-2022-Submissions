@@ -15,4 +15,4 @@ Establishing work for each exercise
 
 Update and delete features
 - [x] 4.13: Deleting a blog / testing deletion
-- [ ] 4.14: Update information of a blog / testing updating likes
+- [x] 4.14: Update information of a blog / testing updating likes
