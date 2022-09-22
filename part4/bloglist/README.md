@@ -21,3 +21,12 @@ Update and delete features
 
 ## Part 4.d
 Establishing work for final exercises in this part
+- [ ] 4.15: POST route for creating users
+- [ ] 4.16*: Username and password format restrictions / tests
+- [ ] 4.17: Each blog contains info on the creator of that blog using `populate`
+- [ ] 4.18: Token-based auth
+- [ ] 4.19: Adding new blogs is only possible if token is valid
+- [ ] 4.20*: Refactor taking the token to a middleware
+- [ ] 4.21*: Blogs can only be deleted by the user who created it
+- [ ] 4.22*: Create `userExtractor` middleware like `tokenExtractor`
+- [ ] 4.23*: Update tests for adding a new blog and unauthorized POST requests 
