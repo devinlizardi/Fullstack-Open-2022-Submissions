@@ -21,7 +21,7 @@ Update and delete features
 
 ## Part 4.d
 Establishing work for final exercises in this part
-- [ ] 4.15: POST route for creating users
+- [x] 4.15: POST route for creating users
 - [ ] 4.16*: Username and password format restrictions / tests
 - [ ] 4.17: Each blog contains info on the creator of that blog using `populate`
 - [ ] 4.18: Token-based auth
