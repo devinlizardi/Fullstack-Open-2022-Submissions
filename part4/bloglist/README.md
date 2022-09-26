@@ -30,3 +30,8 @@ Establishing work for final exercises in this part
 - [ ] 4.21*: Blogs can only be deleted by the user who created it
 - [ ] 4.22*: Create `userExtractor` middleware like `tokenExtractor`
 - [ ] 4.23*: Update tests for adding a new blog and unauthorized POST requests 
+
+## Part 4 Final Thoughts
+I enjoyed learning backend testing and development more than I thought, but for the sake of keeping up progress and spending my time pursuing a career in this field I've decided to leave the untouched questions untouched. I'm also more interested in front-end development anyways, so I'm thinking of putting my energy there when I start it.
+
+Also want to make sure this project is in good shape as I am already using it for reference when it comes to personal projects I'm not starting, so I appreciate how this course has inspired me already.
