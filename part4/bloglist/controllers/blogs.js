@@ -10,20 +10,22 @@ blogRouter.get("/", async (req, res) => {
 blogRouter.post("/", async (req, res) => {
   const body = req.body
 
-  if (!body.title && !body.url) { 
+  if (!body.title && !body.url) {
     res.status(400).end()
     return
   }
 
   const user = await User.findById(body.userId)
-  if (!user) { return res.status(400).json({ error: "user not found" }).end() }
+  if (!user) {
+    return res.status(400).json({ error: "user not found" }).end()
+  }
 
   const blog = new Blog({
     title: body.title,
     url: body.url,
     author: body.author,
     likes: !body.likes ? 0 : body.likes,
-    user: user._id
+    user: user._id,
   })
   const savedBlog = await blog.save()
   user.blogs = user.blogs.concat(savedBlog._id)
@@ -43,7 +45,7 @@ blogRouter.delete("/:id", async (req, res) => {
 
 blogRouter.put("/:id", async (req, res) => {
   const updatedBlog = {
-    likes: req.body.likes
+    likes: req.body.likes,
   }
 
   const result = await Blog.findByIdAndUpdate(req.params.id, updatedBlog, { new: true })

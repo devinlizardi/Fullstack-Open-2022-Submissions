@@ -1,25 +1,25 @@
-const bcrypt = require('bcrypt')
-const userRouter = require('express').Router()
-const User = require('./../models/user')
+const bcrypt = require("bcrypt")
+const userRouter = require("express").Router()
+const User = require("./../models/user")
 
-userRouter.get('/', async (req, res) => {
-  const users = await User.find({}).populate('blogs')
+userRouter.get("/", async (req, res) => {
+  const users = await User.find({}).populate("blogs")
   res.status(201).json(users)
 })
 
-userRouter.post('/', async (req, res) => {
+userRouter.post("/", async (req, res) => {
   const { username, name, password } = req.body
 
   if (!(username && name && password)) {
     return res.status(400).json({
-      error: 'request must contain username, name, and password'
+      error: "request must contain username, name, and password",
     })
   }
 
   const existingUser = await User.findOne({ username })
   if (existingUser) {
     return res.status(400).json({
-      error: 'username must be unique'
+      error: "username must be unique",
     })
   }
 
@@ -29,7 +29,7 @@ userRouter.post('/', async (req, res) => {
   const user = new User({
     username,
     name,
-    passwordHash
+    passwordHash,
   })
 
   const savedUser = await user.save()
