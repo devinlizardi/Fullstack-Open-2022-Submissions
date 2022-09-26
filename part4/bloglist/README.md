@@ -25,7 +25,7 @@ Establishing work for final exercises in this part
 - [ ] 4.16*: Username and password format restrictions / tests
 - [x] 4.17: Each blog contains info on the creator of that blog using `populate`
 - [x] 4.18: Token-based auth
-- [ ] 4.19: Adding new blogs is only possible if token is valid
+- [x] 4.19: Adding new blogs is only possible if token is valid
 - [ ] 4.20*: Refactor taking the token to a middleware
 - [ ] 4.21*: Blogs can only be deleted by the user who created it
 - [ ] 4.22*: Create `userExtractor` middleware like `tokenExtractor`
