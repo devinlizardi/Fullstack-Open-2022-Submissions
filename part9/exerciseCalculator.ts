@@ -14,7 +14,7 @@ const RatingDescriptions = {
   good: "strong boi"
 }
 
-const calculateExercises = (dailyExerciseHours: number[], dailyTarget: number): string => {
+const calculateExercises = (dailyExerciseHours: number[], dailyTarget: number): ExerciseData => {
   type RatingVsDesc = { rating: number, desc: string }
 
   const calculateRating = (): RatingVsDesc  => {
@@ -41,8 +41,7 @@ const calculateExercises = (dailyExerciseHours: number[], dailyTarget: number): 
     average: dailyExerciseHours.reduce((prev, curr) => prev + curr, 0) / dailyExerciseHours.length,
   }
 
-  console.log(calculatedData)
-  return "done"
+  return calculatedData
 }
 
-calculateExercises([3, 0, 2, 4.5, 0, 3, 1], 2)
+console.log(calculateExercises([3, 0, 2, 4.5, 0, 3, 1], 2))
