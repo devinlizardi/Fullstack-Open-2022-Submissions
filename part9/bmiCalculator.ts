@@ -5,7 +5,7 @@ BMI is calculated as body mass divided by square of body height
 @return bmi in kg/m^2
 */
 
-const calculateBmi = (height: Number, weight: Number): string => {
+const calculateBmi = (height: number, weight: number): string => {
   return "hello"
 }
 
