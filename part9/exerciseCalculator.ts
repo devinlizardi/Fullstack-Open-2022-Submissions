@@ -14,6 +14,10 @@ const RatingDescriptions = {
   good: "strong boi"
 }
 
+const parseExercise = (args: string[]): ExerciseData => {
+
+}
+
 const calculateExercises = (dailyExerciseHours: number[], dailyTarget: number): ExerciseData => {
   type RatingVsDesc = { rating: number, desc: string }
 
