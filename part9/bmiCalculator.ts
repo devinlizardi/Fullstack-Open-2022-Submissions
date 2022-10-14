@@ -9,7 +9,7 @@ interface HealthData {
   weight: number
 }
 
-const parseArguments = (args: string[]): HealthData => {
+const parseBmi = (args: string[]): HealthData => {
   if (args.length != 4) throw new Error("not enough / too many args")
 
   if (!isNaN(Number(args[2])) && !isNaN(Number(args[3]))) {
@@ -37,7 +37,7 @@ const calculateBmi = (h: number, w: number): string => {
 }
 
 try {
-  const { height, weight } = parseArguments(process.argv)
+  const { height, weight } = parseBmi(process.argv)
   console.log(`running with height ${height} and weight ${weight}`)
   console.log(calculateBmi(height, weight))
 } catch (error: unknown) {
