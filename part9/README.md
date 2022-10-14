@@ -7,7 +7,7 @@ View documentation for my process learning TypeScript here
 - [x] 9.1: BMI calc
 - [x] 9.2: Exercises calc
 - [x] 9.3: Command line support
-- [ ] 9.4: add Express
+- [x] 9.4: add Express
 - [ ] 9.5: WebBMI
 - [ ] 9.6: EsLint
 - [ ] 9.7: WebExercises
