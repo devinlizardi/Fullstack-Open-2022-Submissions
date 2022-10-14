@@ -11,8 +11,10 @@ app.get('/hello', (_req: any, res: any) => {
 app.get('/bmi', (req: any, res: any) => {
   const bmi: HealthData | Error = bmiCalculator(req.query)
   if (bmi instanceof Error) {
-    res.statusMessage = 'Missing weight or height in request query'
-    res.status(400).end()
+    res.statusMessage = 'Missing Params'
+    res.status(400).send({
+      error: 'could not find weight and height in request query'
+    }).end()
     return
   } else {
     res.json(bmi)
