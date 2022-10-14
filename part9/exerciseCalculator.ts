@@ -41,15 +41,22 @@ const parseExercise = (args: string[]): ParsedArgs => {
   }
 }
 
-const calculateRating = (parsedArgs: ExerciseData): RatingVsDesc => {
-  let rating = (parsedArgs.periodLength - parsedArgs.trainingDays) % 3
-  switch (rating) {
-    case 1:
-      return { rating: 1, desc: RatingDescriptions.mid }
-    case 2:
-      return { rating: 2, desc: RatingDescriptions.good }
+const calculateRating = (parsedArgs: ParsedArgs): RatingVsDesc => {
+  const { dailyTarget, dailyHours } = parsedArgs
+  const length = dailyHours.length
+  const daysExercised = dailyHours.filter(day => day >= dailyTarget).length
+  const r = length - daysExercised
+
+  // TODO: make range-based rating system
+  switch (r) {
+    case 3:
+      return { rating: length - r, desc: RatingDescriptions.mid }
+    case 4:
+      return { rating: length - r, desc: RatingDescriptions.mid }
+    case 5:
+      return { rating: length - r, desc: RatingDescriptions.bad }
     default:
-      return { rating: 0, desc: RatingDescriptions.bad }
+      return { rating: length - r, desc: RatingDescriptions.good }
   }
 }
 
