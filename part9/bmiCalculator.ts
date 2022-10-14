@@ -10,12 +10,12 @@ interface HealthData {
 }
 
 const parseBmi = (args: string[]): HealthData => {
-  if (args.length != 4) throw new Error("not enough / too many args")
+  if (args.length != 2) throw new Error("not enough / too many args")
 
-  if (!isNaN(Number(args[2])) && !isNaN(Number(args[3]))) {
+  if (!isNaN(Number(args[0])) && !isNaN(Number(args[1]))) {
     return {
-      height: Number(args[2]) / 100,
-      weight: Number(args[3]),
+      height: Number(args[0]) / 100,
+      weight: Number(args[1]),
     }
   } else {
     throw new Error("values were not numbers!")
@@ -36,14 +36,18 @@ const calculateBmi = (h: number, w: number): string => {
   }
 }
 
-try {
-  const { height, weight } = parseBmi(process.argv)
-  console.log(`running with height ${height} and weight ${weight}`)
-  console.log(calculateBmi(height, weight))
-} catch (error: unknown) {
-  let errorMessage = "something bad happened \n"
-  if (error instanceof Error) {
-    errorMessage += "Error: " + error.message
+const run = (data: string[]) => {
+  try {
+    const { height, weight } = parseBmi(data)
+    console.log(`running with height ${height}m and weight ${weight}kg`)
+    console.log(calculateBmi(height, weight))
+  } catch (error: unknown) {
+    let errorMessage = "something bad happened \n"
+    if (error instanceof Error) {
+      errorMessage += "Error: " + error.message
+    }
+    console.log(errorMessage)
   }
-  console.log(errorMessage)
 }
+
+export default run
