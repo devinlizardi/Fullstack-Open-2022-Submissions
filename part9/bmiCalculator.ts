@@ -11,7 +11,11 @@ export interface HealthData {
 }
 
 const isHealthData = (value: unknown): value is HealthData =>
-  typeof value == "object" && "height" in (value as HealthData) && "weight" in (value as HealthData);
+  typeof value == "object" 
+    && "height" in (value as HealthData) 
+    && "weight" in (value as HealthData)
+    && !isNaN(Number((value as HealthData).height))
+    && !isNaN(Number((value as HealthData).weight));
 
 const parseBmi = (data: HealthData): HealthData => {
   const { height, weight } = data;
