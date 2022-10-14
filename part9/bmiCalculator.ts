@@ -4,26 +4,23 @@
   @param: weight in kg
   @return bmi in kg/m^2
 */
-interface HealthData {
-  height: number
+export interface HealthData {
   weight: number
+  height: number
+  bmi: string
 }
 
-const parseBmi = (args: string[]): HealthData => {
-  if (args.length != 2) throw new Error("not enough / too many args")
-
-  if (!isNaN(Number(args[0])) && !isNaN(Number(args[1]))) {
-    return {
-      height: Number(args[0]) / 100,
-      weight: Number(args[1]),
-    }
-  } else {
-    throw new Error("values were not numbers!")
+const parseBmi = (data: any): HealthData => {
+  if (!data.weight || !data.height) {
+    throw new Error("missing weight and/or height")
   }
+  const { height, weight } = data
+  const text = calculateBmi(height, weight)
+  return { weight: weight, height: height, bmi: text }
 }
 
 const calculateBmi = (h: number, w: number): string => {
-  const bmi = w / h ** 2
+  const bmi = w / (h / 100) ** 2
   if (bmi < 16) return "Underweight (severe thinness)"
   if (bmi <= 16.9) return "Underweight (moderate thinness)"
   if (bmi <= 18.4) return "Underweight (mild thinness)"
@@ -36,17 +33,13 @@ const calculateBmi = (h: number, w: number): string => {
   }
 }
 
-const run = (data: string[]) => {
+const run = (data: any): any => {
   try {
-    const { height, weight } = parseBmi(data)
-    console.log(`running with height ${height}m and weight ${weight}kg`)
-    console.log(calculateBmi(height, weight))
+    return parseBmi(data)
   } catch (error: unknown) {
-    let errorMessage = "something bad happened \n"
     if (error instanceof Error) {
-      errorMessage += "Error: " + error.message
+      return error
     }
-    console.log(errorMessage)
   }
 }
 
