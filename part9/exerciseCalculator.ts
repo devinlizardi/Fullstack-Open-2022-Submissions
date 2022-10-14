@@ -80,9 +80,10 @@ const calculateExercises = (
 
 try {
   console.log("parsing excercise data")
-  const { dailyTarget, dailyHours } = parseExercise(process.argv)
-  console.log(`recieved target: ${dailyTarget} and daily array: ${dailyHours}`)
-  console.log(calculateExercises(dailyHours, dailyTarget, 3, "hi"))
+  const parsedArgs = parseExercise(process.argv)
+  console.log(`recieved target: ${parsedArgs.dailyTarget} and daily array: ${parsedArgs.dailyHours}`)
+  const { rating, desc } = calculateRating(parsedArgs)
+  console.log(calculateExercises(parsedArgs.dailyHours, parsedArgs.dailyTarget, rating, desc))
 } catch (error: unknown) {
   if (error instanceof Error) console.log("Error: " + error.message)
 }
