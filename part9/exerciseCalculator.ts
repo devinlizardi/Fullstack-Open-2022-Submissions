@@ -41,23 +41,14 @@ const parseExercise = (args: string[]): ParsedArgs => {
   }
 }
 
-const calculateRating = (parsedArgs: ParsedArgs): RatingVsDesc => {
-  const { dailyTarget, dailyHours } = parsedArgs
+const calculateRating = ({ dailyTarget, dailyHours }: ParsedArgs): RatingVsDesc => {
   const length = dailyHours.length
-  const daysExercised = dailyHours.filter(day => day >= dailyTarget).length
-  const r = length - daysExercised
+  const daysExercised = dailyHours.filter((day) => day >= dailyTarget).length
+  const percentExercised = Math.round((daysExercised / length) * 100)
 
-  // TODO: make range-based rating system
-  switch (r) {
-    case 3:
-      return { rating: length - r, desc: RatingDescriptions.mid }
-    case 4:
-      return { rating: length - r, desc: RatingDescriptions.mid }
-    case 5:
-      return { rating: length - r, desc: RatingDescriptions.bad }
-    default:
-      return { rating: length - r, desc: RatingDescriptions.good }
-  }
+  if (percentExercised < 33) return { rating: percentExercised, desc: RatingDescriptions.bad }
+  else if (percentExercised < 66) return { rating: percentExercised, desc: RatingDescriptions.mid }
+  else return { rating: percentExercised, desc: RatingDescriptions.good }
 }
 
 const calculateExercises = (
