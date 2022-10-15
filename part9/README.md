@@ -9,7 +9,7 @@ View documentation for my process learning TypeScript here
 - [x] 9.3: Command line support
 - [x] 9.4: add Express
 - [x] 9.5: WebBMI
-- [ ] 9.6: EsLint
+- [x] 9.6: EsLint
 - [ ] 9.7: WebExercises
 
 #### Part b
