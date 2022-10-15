@@ -10,7 +10,7 @@ View documentation for my process learning TypeScript here
 - [x] 9.4: add Express
 - [x] 9.5: WebBMI
 - [x] 9.6: EsLint
-- [ ] 9.7: WebExercises
+- [x] 9.7: WebExercises
 
 #### Part b
 - [ ] 9.8: ~~~
