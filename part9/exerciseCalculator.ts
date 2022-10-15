@@ -1,54 +1,46 @@
-interface ExerciseData {
-  periodLength: number
-  trainingDays: number
-  success: boolean
-  rating: number
-  ratingDescription: string
-  target: number
-  average: number
+export interface ExerciseData {
+  periodLength: number;
+  trainingDays: number;
+  success: boolean;
+  rating: number;
+  ratingDescription: string;
+  target: number;
+  average: number;
 }
-type ParsedArgs = { dailyTarget: number; dailyHours: number[] };
-type RatingVsDesc = { rating: number; desc: string };
-
-const RatingDescriptions = {
-  bad: "could've worked out more buddy",
-  mid: "you did alr but still weak",
-  good: "strong boi",
+type ParsedArgs = {
+  daily_exercises: number[];
+  target: number;
 };
 
-const parseExercise = (args: string[]): ParsedArgs => {
-  if (args.length < 4) throw new Error("args incorrectly formatted");
+enum RatingDescriptions {
+  bad = "could've worked out more buddy",
+  mid = "you did alr but still weak",
+  good = "strong boi",
+}
 
-  let t;
-  if (!isNaN(Number(args[2]))) {
-    t = Number(args[2]);
-  } else {
-    throw new Error("target arg was not number");
-  }
-
-  const dH = [];
-  for (const arg of args.slice(3)) {
-    if (!isNaN(Number(arg))) {
-      dH.push(Number(arg));
-    } else {
-      throw new Error("receieved non-number in args");
-    }
-  }
-
-  return {
-    dailyTarget: t,
-    dailyHours: dH,
-  };
+type RatingInfo = {
+  num: number;
+  desc: RatingDescriptions;
 };
 
-const calculateRating = ({ dailyTarget, dailyHours }: ParsedArgs): RatingVsDesc => {
-  const length = dailyHours.length;
-  const daysExercised = dailyHours.filter((day) => day >= dailyTarget).length;
+const isParsedArgs = (args: unknown): args is ParsedArgs => 
+  typeof args == "object"
+  && 'daily_exercises' in (args as ParsedArgs)
+  && 'target' in (args as ParsedArgs);
+
+const isValidData = (args: ParsedArgs): args is ParsedArgs =>
+  !isNaN(Number(args.target))
+  && Array.isArray(args.daily_exercises)
+  && args.daily_exercises.filter(num => isNaN(Number(num))).length === 0;
+
+const calculateRating = ({ daily_exercises, target }: ParsedArgs): RatingInfo => {
+  const length = daily_exercises.length;
+  const daysExercised = daily_exercises.filter((day) => day >= target).length;
   const percentExercised = Math.round((daysExercised / length) * 100);
 
-  if (percentExercised < 33) return { rating: percentExercised, desc: RatingDescriptions.bad };
-  else if (percentExercised < 66) return { rating: percentExercised, desc: RatingDescriptions.mid };
-  else return { rating: percentExercised, desc: RatingDescriptions.good };
+  if (percentExercised < 33) return { num: percentExercised, desc: RatingDescriptions.bad };
+  else if (percentExercised < 66) return { num: percentExercised, desc: RatingDescriptions.mid };
+  else return { num: percentExercised, desc: RatingDescriptions.good };
 };
 
 const calculateExercises = (
@@ -69,13 +61,10 @@ const calculateExercises = (
   return calculatedData;
 };
 
-try {
-  console.log("parsing excercise data");
-  const parsedArgs = parseExercise(process.argv);
-  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-  console.log(`recieved target: ${parsedArgs.dailyTarget} and daily array: ${parsedArgs.dailyHours}`);
-  const { rating, desc } = calculateRating(parsedArgs);
-  console.log(calculateExercises(parsedArgs.dailyHours, parsedArgs.dailyTarget, rating, desc));
-} catch (error: unknown) {
-  if (error instanceof Error) console.log("Error: " + error.message);
-}
+export default (params: unknown) => {
+  if (!isParsedArgs(params)) throw new Error('parameters missing');
+  if (!isValidData(params)) throw new Error('malformatted parameters');
+
+  const ratingInfo: RatingInfo = calculateRating(params);
+  return calculateExercises(params.daily_exercises, params.target, ratingInfo.num, ratingInfo.desc);
+};
