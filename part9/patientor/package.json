@@ -1,12 +1,13 @@
 {
-  "name": "ilaris_flight_diaries",
+  "name": "patientor",
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
     "lint": "eslint --ext ts .",
-    "dev": "ts-node-dev index.ts"
+    "dev": "ts-node-dev index.ts",
+    "start-prod": "node build/index.js"
   },
   "author": "",
   "license": "ISC",
