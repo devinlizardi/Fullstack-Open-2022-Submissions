@@ -1,11 +1,13 @@
-import express from 'express';
+import express from "express";
 
 const PORT = 3001;
 const app = express();
 
-app.get('/ping', (_req, res) => {
-  console.log('pinged');
-  res.send('pong');
+app.use(express.json());
+
+app.get("/ping", (_req, res) => {
+  console.log("pinged");
+  res.send("pong");
 });
 
 app.listen(PORT, () => {
