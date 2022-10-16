@@ -12,9 +12,6 @@ View documentation for my process learning TypeScript here
 - [x] 9.6: EsLint
 - [x] 9.7: WebExercises
 
-#### Part b
-- [ ] 9.8: ~~~
-
 ## Notes
 #### Part a
 Struggled remembering the new syntax, as well as where the best places to check types were. For instance, `interface` vs `type` seem to be about best practice -- not sure what that means -- and there's definitely a temptation to explicitly type _everything_.
