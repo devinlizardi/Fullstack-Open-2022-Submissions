@@ -7,7 +7,7 @@ const express_1 = __importDefault(require("express"));
 const getNonSensitivePatients_1 = __importDefault(require("./../services/getNonSensitivePatients"));
 const router = express_1.default.Router();
 router.get('/', (_req, res) => {
-    console.log('requested patients');
+    console.log('fetching patients from: ', __dirname);
     const allPatients = getNonSensitivePatients_1.default.getNonSensitivePatients();
     res.json(allPatients);
 });
