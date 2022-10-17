@@ -1,21 +1,21 @@
 import patients from "./../../data/patients.json";
-import { Patient, NonSensitivePatient } from "../types";
+import { NonSensitivePatient } from "../types";
+import toNewPatient from "../utils/validatePatient";
 
-const getPatients = (): Patient[] => {
-  return patients;
-};
 
 const getNonSensitivePatients = (): NonSensitivePatient[] => {
-  return patients.map(({ id, name, dateOfBirth, gender, occupation }) => ({
-    id,
-    name,
-    dateOfBirth,
-    gender,
-    occupation,
-  }));
+  return patients.map(obj => {
+    const object = toNewPatient(obj);
+    return {
+      id: obj.id,
+      name: object.name,
+      dateOfBirth: object.dateOfBirth,
+      gender: object.gender,
+      occupation: object.occupation
+    };
+  });
 };
 
 export default {
-  getPatients,
   getNonSensitivePatients,
 };
