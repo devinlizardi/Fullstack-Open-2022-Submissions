@@ -3,7 +3,7 @@
 Solutions and process in this repo
 
 ## Exercises 
-- [ ] 9.14: create app
+- [x] 9.14: create app
 - [ ] 9.15: extend app
 - [ ] 9.16: 
 - [ ] 9.17:
