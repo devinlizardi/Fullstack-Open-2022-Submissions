@@ -7,6 +7,8 @@ Documenting process of patientor api
 - [x] 9.9: Build and test frontend
 - [x] 9.10: Type data
 - [x] 9.11: Endpoint for patients
+- [x] 9.12: POST endpoint
+- [x] 9.13: gender enum type
 
 ## Notes
 #### Part c
