@@ -1,6 +1,6 @@
 ### Project Files for Full Stack Open 2022
 
-[View my development process Notion Board](https://www.notion.so/Planning-7b3e818fc3c44009ac90263b7949bb0c)
+[View my development process Notion Board]()
 
 [View Project on Heroku](https://protected-sands-11467.herokuapp.com/)
 
