@@ -1,13 +1,12 @@
 import React from "react"
+import Part from "./Part"
 import { ContentProps } from "../util/types"
 
 const Content = ({ courseParts }: ContentProps) => {
   return (
     <>
       {courseParts.map((course) => (
-        <p key={course.name}>
-          {course.name} {course.exerciseCount}
-        </p>
+        <Part key={course.name} course={course} />
       ))}
     </>
   )
