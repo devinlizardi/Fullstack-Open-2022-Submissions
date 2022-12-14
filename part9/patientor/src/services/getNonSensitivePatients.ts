@@ -11,7 +11,8 @@ const getNonSensitivePatients = (): NonSensitivePatient[] => {
       name: object.name,
       dateOfBirth: object.dateOfBirth,
       gender: object.gender,
-      occupation: object.occupation
+      occupation: object.occupation,
+      entries: object.entries,
     };
   });
 };

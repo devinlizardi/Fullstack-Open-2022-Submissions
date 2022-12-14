@@ -2,24 +2,28 @@ export interface Diagnosis {
   code: string;
   name: string;
   latin?: string;
-};
+}
 
 export interface Patient {
   id: string;
   name: string;
-  dateOfBirth: string;
   ssn: string;
-  gender: Genders;
   occupation: string;
-};
-
-export enum Genders {
-  male = 'male',
-  female = 'female',
-  nonbinary = 'enby',
-  other = 'other'
+  gender: Genders;
+  dateOfBirth: string;
+  entries: Entry[];
 }
 
-export type NonSensitivePatient = Omit<Patient, 'ssn'>;
+export enum Genders {
+  male = "male",
+  female = "female",
+  nonbinary = "enby",
+  other = "other",
+}
 
-export type NewPatient = Omit<Patient, 'id'>;
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface Entry {}
+
+export type NonSensitivePatient = Omit<Patient, "ssn" | "entries">;
+
+export type NewPatient = Omit<Patient, "id">;

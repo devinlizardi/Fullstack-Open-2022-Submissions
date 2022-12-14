@@ -1,7 +1,7 @@
 import express from "express";
 import patientService from "./../services/getNonSensitivePatients";
 import addPatientService from "../services/addPatientService";
-import toNewPatient from './../utils/validatePatient';
+import toNewPatient from "./../utils/validatePatient";
 import { NewPatient, NonSensitivePatient } from "../types";
 
 const router = express.Router();
@@ -10,6 +10,12 @@ router.get("/", (_req, res) => {
   const allPatients: NonSensitivePatient[] =
     patientService.getNonSensitivePatients();
   res.json(allPatients);
+});
+
+router.get("/:id", (req, res) => {
+  const allPatients: NonSensitivePatient[] =
+    patientService.getNonSensitivePatients();
+  res.json(allPatients.filter(patient => patient.id === req.params.id));
 });
 
 router.post("/", (req, res) => {

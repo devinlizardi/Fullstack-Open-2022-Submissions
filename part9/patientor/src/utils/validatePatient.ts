@@ -45,6 +45,7 @@ const toNewPatient = ({
     ssn: parseField(ssn),
     gender: parseGender(gender),
     occupation: parseField(occupation),
+    entries: []
   };
   return newEntry;
 };

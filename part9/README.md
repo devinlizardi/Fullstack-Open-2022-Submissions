@@ -32,7 +32,7 @@ View more in _/patientor/_ directory, though things have changed since completin
 View in _/courses/_ directory
 
 **patientor**
-- [ ] 9.16: create _/api/patients/:id_ endpoint
+- [x] 9.16: create _/api/patients/:id_ endpoint
 - [ ] 9.17:
 - [ ] 9.18:
 
