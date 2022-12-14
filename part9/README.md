@@ -33,8 +33,8 @@ View in _/courses/_ directory
 
 **patientor**
 - [x] 9.16: create _/api/patients/:id_ endpoint
-- [ ] 9.17:
-- [ ] 9.18:
+- [ ] 9.17: create patient info page on frontend (wait what frontend??)
+- [ ] 9.18: define action creator functions
 
 Alterations made in _/patientor/_ dir
 
