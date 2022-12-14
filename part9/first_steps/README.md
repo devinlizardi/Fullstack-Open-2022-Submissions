@@ -2,16 +2,6 @@
 # Part 9 Exercises
 View documentation for my process learning TypeScript here
 
-## Exercises Listed
-#### Part a
-- [x] 9.1: BMI calc
-- [x] 9.2: Exercises calc
-- [x] 9.3: Command line support
-- [x] 9.4: add Express
-- [x] 9.5: WebBMI
-- [x] 9.6: EsLint
-- [x] 9.7: WebExercises
-
 ## Notes
 #### Part a
 Struggled remembering the new syntax, as well as where the best places to check types were. For instance, `interface` vs `type` seem to be about best practice -- not sure what that means -- and there's definitely a temptation to explicitly type _everything_.
