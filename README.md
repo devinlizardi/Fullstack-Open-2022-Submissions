@@ -11,4 +11,4 @@ The quality of instruction and brevity of language used to explain concepts is e
 
 # Current Work
 
-**12/14/22**: part 9d, exercises 9.16 - 9.18, _part9/patientor_ directory
+**12/14/22**: part 9d, exercises 9.16 - 9.18, _/part9/patientor/_ directory
