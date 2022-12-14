@@ -1,5 +1,6 @@
 import React from "react"
 import { CoursePart, PartProps } from "../util/types"
+import { assertNever } from "../util/helper"
 
 const Part = ({ course }: PartProps) => {
   const comp = (part: CoursePart) => {
@@ -48,7 +49,7 @@ const Part = ({ course }: PartProps) => {
           </p>
         )
       default:
-        console.log(part)
+        assertNever(part)
         break
     }
   }
