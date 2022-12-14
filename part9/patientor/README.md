@@ -9,3 +9,7 @@ It was really satisfying when everything clicked together, I think I'm realizing
 
 ### Part d
 Picking this up after a long break, will update development process so I can have an easier time getting back into it. I'd like to complete this entire course part so I can continue moving through FSO content.
+
+Is this the front end I'm supposed to alter?
+
+https://github.com/fullstack-hy2020/patientor
