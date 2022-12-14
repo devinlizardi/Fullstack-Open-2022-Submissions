@@ -4,7 +4,7 @@ Solutions and process in this repo
 
 ## Exercises 
 
-*courses*
+**courses**
 - [x] 9.14: create app
 - [x] 9.15: extend app
 

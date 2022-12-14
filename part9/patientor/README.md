@@ -11,12 +11,12 @@ Documenting process of patientor api
 - [x] 9.13: gender enum type
 
 #### Part d
-*patientor*
+**patientor**
 - [ ] 9.16: create _/api/patients/:id_ endpoint
 - [ ] 9.17:
 - [ ] 9.18:
 
-*not started*
+**not started**
 - [ ] 9.19:
 - [ ] 9.20:
 - [ ] 9.21:
